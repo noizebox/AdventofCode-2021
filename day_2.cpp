@@ -1,9 +1,9 @@
 #include <iostream>
 #include <numeric>
 #include <algorithm>
-#include <vector>
 #include <string_view>
-#include "data.h"
+
+#include "data/data_day_2.h"
 
 class Movement
 {

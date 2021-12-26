@@ -1,7 +1,7 @@
 #include <iostream>
 #include <numeric>
 #include <vector>
-#include "data.h"
+#include "data/data_day_1.h"
 
 int main()
 {
