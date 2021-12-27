@@ -50,7 +50,7 @@ public:
         return bingo;
     }
 
-    // Sum of unmarked numbers
+    // Sum of unmarked (remaining) numbers
     int calc_score() const
     {
         return std::accumulate(_numbers.begin(), _numbers.end(), 0, [] (const auto& a, const auto& b) {return a + b.first;});
@@ -62,7 +62,7 @@ private:
     // Store coordinates for every value instead of the entire board
     std::vector<std::pair<int, std::pair<int, int>>> _numbers;
 
-    // Store number of marked numbers in every row and column for quick bingo identification
+    // Store count of marked numbers in every row and column for quick bingo identification
     std::array<int, BOARD_WIDTH> _h_count;
     std::array<int, BOARD_WIDTH> _v_count;
 
