@@ -119,12 +119,13 @@ void solve_part_2(std::vector<Data> data)
             switch (s.size())
             {
                 case 5:
-                    /* There are 3 numbers with 5 segments: 2, 3 and 5, 3 differ from 7 with 2 segments, while
+                    /* There are 3 digits with 5 segments: 2, 3, and 5. 3 differ from 7 with 2 segments, while
                      * 2 and 5 differ with 3 segments. And 5 differs from 4 with 2 segments while 2 differs by 3 */
                     solver[s] = diff_7 == 2 ? '3' : diff_4 == 2 ? '5' : '2';
                     break;
 
                 case 6:
+                    /* The 6 segment digits are 0, 6, and 9. */
                     solver[s] = diff_7 == 4 ? '6' : diff_4 == 2 ? '9' : '0';
                     break;
             }
