@@ -49,8 +49,6 @@ void solve_day_6(int days)
  */
 void solve_day_6_opt(int days)
 {
-
-
     int64_t fish = 0;
 
     for (int i = 0; i <= FISH_START_TIME; ++i)
