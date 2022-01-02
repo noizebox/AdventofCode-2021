@@ -70,7 +70,7 @@ private:
 };
 
 
-void solve_part_1()
+void solve_day_10()
 {
     std::vector<Board> boards(BINGO_BOARDS.begin(), BINGO_BOARDS.end());
 
@@ -111,7 +111,7 @@ void solve_part_2()
 
 int main()
 {
-    solve_part_1();
+    solve_day_10();
     solve_part_2();
     return 0;
 }

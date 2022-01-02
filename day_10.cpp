@@ -49,7 +49,7 @@ std::pair<State, int64_t> parse_line(std::string_view line)
     return {State::OK, 0};
 }
 
-void solve_part_1()
+void solve_day_10()
 {
     int corrupt_score = 0;
     std::vector<int64_t> completion_score;
@@ -71,7 +71,7 @@ void solve_part_1()
 
 int main()
 {
-    solve_part_1();
+    solve_day_10();
     return 0;
 }
 
