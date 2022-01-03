@@ -7,18 +7,16 @@
 
 #include "data/data_day_12.h"
 
-
 using Path = std::vector<std::string>;
-using PathList = std::vector<Path>;
 
 std::map<std::string, Path> build_map()
 {
     std::map<std::string, Path> caves;
-    for (std::string_view node : DATA_12_12)
+    for (std::string_view pair : DATA_12_12)
     {
-        int split_point = node.find('-');
-        std::string id_1(node.substr(0, split_point));
-        std::string id_2(node.substr(split_point + 1, std::string_view::npos));
+        int split_point = pair.find('-');
+        std::string id_1(pair.substr(0, split_point));
+        std::string id_2(pair.substr(split_point + 1, std::string_view::npos));
         auto& cave_1 = caves[id_1];
         cave_1.push_back(id_2);
         auto& cave_2 = caves[id_2];
@@ -27,44 +25,43 @@ std::map<std::string, Path> build_map()
     return caves;
 }
 
-void recursive_path_search(std::map<std::string, Path>& map,
+int recursive_path_search(std::map<std::string, Path>& map,
                            const std::string& current,
-                           PathList& paths,
                            int small_cave_double_visits,
-                           Path path = Path())
+                           Path& path)
 {
-    path.push_back(current);
     if (current == "end")
     {
-        paths.push_back(path);
-        return;
+        return 1;
     }
     if (islower(current[0]))
     {
-        if (std::count(path.begin(), path.end(), current) > 1)
+        if (std::count(path.begin(), path.end(), current) > 0)
         {
             if (small_cave_double_visits-- <= 0 || current == "start")
-                return;
+                return 0;
         }
     }
+    path.push_back(current);
+    int sum = 0;
     for (const auto& next : map[current])
     {
-        recursive_path_search(map, next, paths, small_cave_double_visits, path);
+        sum += recursive_path_search(map, next, small_cave_double_visits, path);
     }
+    path.pop_back();
+    return sum;
 }
 
 void solve_part_1(std::map<std::string, Path>& caves)
 {
-    PathList paths;
-    recursive_path_search(caves, "start", paths, 0);
-    std::cout << "Part 1, found " << paths.size() << " paths" << std::endl;
+    Path path;
+    std::cout << "Part 1, found " << recursive_path_search(caves, "start", 0, path) << " paths" << std::endl;
 }
 
 void solve_part_2(std::map<std::string, Path>& caves)
 {
-    PathList paths;
-    recursive_path_search(caves, "start", paths, 1);
-    std::cout << "Part 2, found " << paths.size() << " paths" << std::endl;
+    Path path;
+    std::cout << "Part 2, found " << recursive_path_search(caves, "start", 1, path) << " paths" << std::endl;
 }
 
 int main()
