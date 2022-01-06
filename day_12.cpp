@@ -9,6 +9,7 @@
 
 using Path = std::vector<std::string>;
 
+/* Build a map of all caves and their adjacent caves */
 std::map<std::string, Path> build_map()
 {
     std::map<std::string, Path> caves;
@@ -16,7 +17,7 @@ std::map<std::string, Path> build_map()
     {
         int split_point = pair.find('-');
         std::string id_1(pair.substr(0, split_point));
-        std::string id_2(pair.substr(split_point + 1, std::string_view::npos));
+        std::string id_2(pair.substr(split_point + 1));
         auto& cave_1 = caves[id_1];
         cave_1.push_back(id_2);
         auto& cave_2 = caves[id_2];
@@ -25,6 +26,7 @@ std::map<std::string, Path> build_map()
     return caves;
 }
 
+/* Returns the number of valid paths, starting from 'current' */
 int recursive_path_search(std::map<std::string, Path>& map,
                            const std::string& current,
                            int small_cave_double_visits,
@@ -38,7 +40,7 @@ int recursive_path_search(std::map<std::string, Path>& map,
     {
         if (std::count(path.begin(), path.end(), current) > 0)
         {
-            if (small_cave_double_visits-- <= 0 || current == "start")
+            if (--small_cave_double_visits < 0 || current == "start")
                 return 0;
         }
     }
