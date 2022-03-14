@@ -7,7 +7,7 @@
 
 constexpr auto DATA_14_INIT = "PHVCVBFHCVPFKBNHKNBO";
 
-constexpr std::array<std::pair<char*, char>, 100> DATA_14_12 = {{
+constexpr std::array<std::pair<const char*, const char>, 100> DATA_14_12 = {{
               {"HK", 'F'},
               {"VN", 'S'},
               {"NB", 'F'},
